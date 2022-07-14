@@ -87,7 +87,7 @@ function ChatWindow() {
               <p className="text-prm-white text-xl font-semibold break-words">
                 {roomSelected?.name}
               </p>
-              <span className="text-prm-white mt-2 break-words text-ellipsis block w-[200px]">
+              <span className="text-prm-white mt-2 break-words block">
                 {roomSelected?.description}
               </span>
             </div>
