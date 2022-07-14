@@ -61,13 +61,6 @@ function ChatWindow() {
     }
   };
 
-  const handleInputPressEnter = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleOnSubmit();
-    }
-  };
-
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -133,11 +126,10 @@ function ChatWindow() {
               })}
               <div ref={messagesEndRef} />
             </div>
-            <form className="mt-3 w-full flex">
+            <form className="mt-3 w-full flex" onSubmit={handleOnSubmit}>
               <input
                 value={valueInput}
                 onChange={handleInputChange}
-                onKeyPress={handleInputPressEnter}
                 type="text"
                 placeholder="Nhập vào tin nhắn"
                 className="w-full p-2 border border-gray-700 bg-second-black text-prm-white outline-none rounded-sm"
