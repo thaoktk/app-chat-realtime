@@ -132,7 +132,7 @@ function ChatWindow() {
                 onChange={handleInputChange}
                 type="text"
                 placeholder="Nhập vào tin nhắn"
-                className="w-full p-2 border border-gray-700 bg-second-black text-prm-white outline-none rounded-sm"
+                className="w-full p-2 border border-gray-700 bg-second-black text-prm-white text-md outline-none rounded-sm"
               />
               <button
                 onClick={handleOnSubmit}
