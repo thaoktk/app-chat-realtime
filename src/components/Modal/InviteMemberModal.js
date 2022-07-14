@@ -2,15 +2,12 @@ import { Avatar, Form, Modal, Select, Spin } from "antd";
 import {
   collection,
   getDocs,
-  limit,
-  orderBy,
-  query,
-  where,
+  limit, query,
+  where
 } from "firebase/firestore";
 import { debounce } from "lodash";
 import React, { useContext, useMemo, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
-import { AuthContext } from "../../Context/AuthProvider";
 import { db } from "../../firebase/config";
 import { updateDocument } from "../../firebase/service";
 

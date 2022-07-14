@@ -88,7 +88,7 @@ function AddRoomModal() {
             />
           </Form.Item>
           <div>
-            <div className="mb-2">Up ảnh</div>
+            <div className="mb-2">Ảnh phòng</div>
             <input
               type="text"
               value={imgUrl}
