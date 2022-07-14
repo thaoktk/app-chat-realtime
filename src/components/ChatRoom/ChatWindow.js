@@ -47,7 +47,8 @@ function ChatWindow() {
     setValueInput(e.target.value);
   };
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
     if (valueInput.trim().length !== 0) {
       addDocument("messages", {
         text: valueInput,
