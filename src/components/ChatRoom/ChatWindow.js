@@ -136,6 +136,7 @@ function ChatWindow() {
               />
               <button
                 onClick={handleOnSubmit}
+                type="submit"
                 className="px-3 py-2 border border-prm-orange text-prm-orange bg-second-black rounded-sm"
               >
                 Gửi
