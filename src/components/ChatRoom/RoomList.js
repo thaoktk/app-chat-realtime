@@ -1,13 +1,19 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Collapse, Typography } from "antd";
-import React, { useContext } from "react";
+import { closestTo, format } from "date-fns";
+import React, { useContext, useMemo } from "react";
 import { AppContext } from "../../Context/AppProvider";
 
 const { Panel } = Collapse;
 
 function RoomList() {
-  const { rooms, selectedRoomId, setIsAddRoomVisible, setSelectedRoomId } =
-    useContext(AppContext);
+  const {
+    messages,
+    rooms,
+    selectedRoomId,
+    setIsAddRoomVisible,
+    setSelectedRoomId,
+  } = useContext(AppContext);
 
   const handleAddRoom = () => {
     setIsAddRoomVisible(true);
@@ -30,10 +36,10 @@ function RoomList() {
                   room.id === selectedRoomId ? "active" : ""
                 }`}
               >
-                <Avatar src={room.roomPhotoURL} className="mr-3 " >
+                <Avatar src={room.roomPhotoURL} className="mr-3 ">
                   {!room.roomPhotoURL && room.name.charAt(0).toUpperCase()}
                 </Avatar>
-                {room.name}
+                  <span>{room.name}</span>
               </Typography.Link>
             );
           })}

@@ -112,20 +112,30 @@ function ChatWindow() {
             </div>
           </div>
           <div className="px-5 py-5 flex flex-col justify-end content-message">
-            <div className="max-h-full overflow-y-auto message-list">
-              {messages.map((message) => {
-                return (
-                  <Message
-                    key={message.id}
-                    text={message.text}
-                    photoURL={message.photoURL}
-                    displayName={message.displayName}
-                    createdAt={message.createdAt}
-                  />
-                );
-              })}
-              <div ref={messagesEndRef} />
-            </div>
+            {messages.length === 0 ? (
+              <div className="w-full h-full flex items-center justify-center">
+                <div className="text-xl text-prm-white">
+                  Chưa có tin nhắn nào! Hãy chat đi ~~
+                </div>
+              </div>
+            ) : (
+              <div className="max-h-full overflow-y-auto message-list">
+                {messages.map((message) => {
+                  return (
+                    <Message
+                      key={message.id}
+                      idUser={message.uid}
+                      text={message.text}
+                      photoURL={message.photoURL}
+                      displayName={message.displayName}
+                      createdAt={message.createdAt}
+                    />
+                  );
+                })}
+                <div ref={messagesEndRef} />
+              </div>
+            )}
+
             <form className="mt-3 w-full flex" onSubmit={handleOnSubmit}>
               <input
                 value={valueInput}
