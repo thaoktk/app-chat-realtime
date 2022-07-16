@@ -28,6 +28,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
   return (
     <Select
       // labelInValue
+      onFocus={() => setOptions([])}
       filterOption={false} // để tránh so sánh 1 lần nữa
       // khi mà search thì cái value mà dc search sẽ truyền vào cái debounceFetcher
       onSearch={debounceFetcher}
@@ -89,6 +90,7 @@ function InviteMemberModal() {
       ...roomSelected,
       members: [...roomSelected.members, ...value],
     };
+
     updateDocument("rooms", selectedRoomId, roomAddUsers);
 
     setValue([]);
