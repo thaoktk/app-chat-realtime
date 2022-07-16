@@ -100,8 +100,6 @@ function InviteMemberModal() {
     setIsInviteMemberVisible(false);
   };
 
-  console.log(value);
-
   return (
     <div>
       <Modal
