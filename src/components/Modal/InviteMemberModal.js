@@ -1,10 +1,5 @@
 import { Avatar, Form, Modal, Select, Spin } from "antd";
-import {
-  collection,
-  getDocs,
-  limit, query,
-  where
-} from "firebase/firestore";
+import { collection, getDocs, limit, query, where } from "firebase/firestore";
 import { debounce } from "lodash";
 import React, { useContext, useMemo, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
@@ -104,6 +99,8 @@ function InviteMemberModal() {
     setValue([]);
     setIsInviteMemberVisible(false);
   };
+
+  console.log(value);
 
   return (
     <div>

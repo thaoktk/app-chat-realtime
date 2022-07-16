@@ -33,7 +33,7 @@ function ChatWindow() {
   const handleOutRoom = () => {
     const roomDeleteCurrUser = {
       ...roomSelected,
-      members: members.filter((member) => member.uid !== uid),
+      members: roomSelected.members.filter((member) => member !== uid),
     };
     updateDocument("rooms", selectedRoomId, roomDeleteCurrUser);
     setSelectedRoomId("");
