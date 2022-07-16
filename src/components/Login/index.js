@@ -1,9 +1,7 @@
 import {
   FacebookAuthProvider,
-  getRedirectResult,
   GoogleAuthProvider,
   signInWithPopup,
-  signInWithRedirect,
 } from "firebase/auth";
 import React from "react";
 import { auth } from "../../firebase/config";
@@ -27,14 +25,12 @@ function Login() {
   };
 
   const handleFBLogin = async () => {
-    signInWithRedirect(auth, fbProvider);
-    const { _tokenResponse, user } = await getRedirectResult(auth);
+    const { _tokenResponse, user } = await signInWithPopup(auth, fbProvider);
     addUser(_tokenResponse, user);
   };
 
   const handleGGLogin = async () => {
-    signInWithRedirect(auth, ggProvider);
-    const { _tokenResponse, user } = await getRedirectResult(auth);
+    const { _tokenResponse, user } = await signInWithPopup(auth, ggProvider);
     addUser(_tokenResponse, user);
   };
 
