@@ -15,7 +15,6 @@ function ChatWindow() {
   const {
     roomSelected,
     selectedRoomId,
-    members,
     messages,
     setIsInviteMemberVisible,
     setIsInfoRoomVisible,
