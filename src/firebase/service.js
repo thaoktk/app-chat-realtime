@@ -1,24 +1,29 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "./config";
 
-export const addDocument = (col, data) => {
+export const addDocument = async (col, data) => {
   const query = collection(db, col);
-  addDoc(query, { ...data, createdAt: serverTimestamp() });
+  await addDoc(query, { ...data, createdAt: serverTimestamp() });
 };
 
-export const updateDocument = (col, idValue, data) => {
+export const updateDocument = async (col, idValue, data) => {
   const docRef = doc(db, col, idValue);
-  updateDoc(docRef, {
+  await updateDoc(docRef, {
     ...data,
   });
 };
 
+export const deleteDocument = async (col, idValue) => {
+  const docRef = doc(db, col, idValue);
+  await deleteDoc(docRef);
+};
 
 // tao keywords cho displayName, su dung cho search
 export const generateKeywords = (displayName) => {

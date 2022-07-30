@@ -3,10 +3,14 @@ import {
   SmileOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
 import { AuthContext } from "../../Context/AuthProvider";
-import { addDocument, updateDocument } from "../../firebase/service";
+import {
+  addDocument,
+  deleteDocument,
+  updateDocument,
+} from "../../firebase/service";
 import Message from "./Message";
 
 function ChatWindow() {
@@ -32,10 +36,14 @@ function ChatWindow() {
   const handleOutRoom = () => {
     const roomDeleteCurrUser = {
       ...roomSelected,
-      members: roomSelected.members.filter((member) => member !== uid),
+      members: roomSelected.membersId.filter((memberId) => memberId !== uid),
     };
     updateDocument("rooms", selectedRoomId, roomDeleteCurrUser);
     setSelectedRoomId("");
+    console.log(roomDeleteCurrUser.members);
+    if (roomDeleteCurrUser.members <= 0) {
+      deleteDocument("rooms", selectedRoomId);
+    }
   };
 
   const handleInfoRoom = () => {

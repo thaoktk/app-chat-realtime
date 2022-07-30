@@ -74,10 +74,18 @@ a.ant-typography.active:hover {
   color: #e2b147;
 }
 
-
 ::-webkit-file-upload-button {
   background: transparent;
   border: 1px solid #d9d9d9;
   color: black;
   padding: 5px 10px;
+}
+
+.modal-change-nickname .ant-modal-content {
+  max-height: 383px;
+  overflow-y: auto;
+}
+
+.modal-change-nickname .ant-modal-content::-webkit-scrollbar {
+  display: none;
 }

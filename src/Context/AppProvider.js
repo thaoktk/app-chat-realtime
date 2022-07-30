@@ -8,13 +8,14 @@ function AppProvider({ children }) {
   const [isAddRoomVisible, setIsAddRoomVisible] = useState(false);
   const [isInviteMemberVisible, setIsInviteMemberVisible] = useState(false);
   const [isInfoRoomVisible, setIsInfoRoomVisible] = useState(false);
+  const [isChangeNickNameVisible, setIsChangeNickNameVisible] = useState(false);
   const [selectedRoomId, setSelectedRoomId] = useState("");
 
   const { user } = useContext(AuthContext);
 
   const roomsCondition = useMemo(() => {
     return {
-      fieldName: "members",
+      fieldName: "membersId",
       operator: "array-contains",
       compareValue: user.uid,
     };
@@ -25,13 +26,15 @@ function AppProvider({ children }) {
     return rooms.find((room) => room.id === selectedRoomId);
   }, [rooms, selectedRoomId]);
 
+  const listIdMember = roomSelected?.membersId.map((memberId) => memberId);
+
   const usersCondition = useMemo(() => {
     return {
       fieldName: "uid",
       operator: "in",
-      compareValue: roomSelected?.members, // các member là các uid
+      compareValue: listIdMember, // các member là các uid
     };
-  }, [roomSelected?.members]);
+  }, [listIdMember]);
 
   const members = useFirestore("users", usersCondition);
 
@@ -60,6 +63,8 @@ function AppProvider({ children }) {
         setIsInfoRoomVisible,
         selectedRoomId,
         setSelectedRoomId,
+        isChangeNickNameVisible,
+        setIsChangeNickNameVisible,
       }}
     >
       {children}

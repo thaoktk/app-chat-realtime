@@ -1,12 +1,15 @@
 import { Avatar } from "antd";
 import { formatRelative } from "date-fns";
 import React, { useContext, useMemo } from "react";
+import { AppContext } from "../../Context/AppProvider";
 import { AuthContext } from "../../Context/AuthProvider";
 
 function Message({ idUser, text, displayName, createdAt, photoURL }) {
   const {
     user: { uid },
   } = useContext(AuthContext);
+
+  const { roomSelected } = useContext(AppContext);
 
   const messageCreatedAt = useMemo(() => {
     if (createdAt) {
@@ -20,6 +23,10 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
     }
   }, [createdAt]);
 
+  const memberHasNickName = useMemo(() => {
+    return roomSelected?.members.find((member) => member.uid === idUser);
+  }, [roomSelected, idUser]);
+
   return (
     <div className="mb-4">
       {idUser === uid ? (
@@ -27,7 +34,10 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
           <span className="text-neutral-400 text-xs mr-3 mb-1">
             {messageCreatedAt}
           </span>
-          <p className="text-prm-white text-xl px-3 py-2 mr-3 mt-2 w-fit bg-[#272829] rounded break-words text">
+          <p
+            style={{ backgroundColor: roomSelected?.colorRoom }}
+            className={`text-prm-white text-xl px-3 py-2 mr-3 mt-2 w-fit  rounded break-words text`}
+          >
             {text}
           </p>
         </div>
@@ -39,7 +49,7 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
             </Avatar>
             <div>
               <span className="text-prm-white text-lg font-semibold ml-3">
-                {displayName}
+                {memberHasNickName?.nickName || displayName}
               </span>
               <span className="text-neutral-400 text-xs ml-3">
                 {messageCreatedAt}
@@ -47,7 +57,10 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
             </div>
           </div>
           <div>
-            <p className="text-prm-white text-xl px-3 py-2 ml-5 mt-2 w-fit bg-[#272829] rounded break-words text">
+            <p
+              style={{ backgroundColor: roomSelected?.colorRoom }}
+              className={`text-prm-white text-xl px-3 py-2 ml-5 mt-2 w-fit  rounded break-words text`}
+            >
               {text}
             </p>
           </div>

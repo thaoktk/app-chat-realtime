@@ -25,8 +25,10 @@ function AddRoomModal() {
 
     addDocument("rooms", {
       ...form.getFieldValue(),
-      members: [user.uid],
+      members: [{ uid: user.uid, nickName: null }],
+      membersId: [user.uid],
       roomPhotoURL: imageRoomPhoto,
+      colorRoom: "#272829",
     });
     form.resetFields();
     inputFileRef.current.value = null;

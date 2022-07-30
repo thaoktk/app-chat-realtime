@@ -86,9 +86,16 @@ function InviteMemberModal() {
   const [form] = Form.useForm();
 
   const handleOk = () => {
+    const userAdd = value.map((val) => {
+      return {
+        uid: val,
+        nickName: null,
+      };
+    });
     const roomAddUsers = {
       ...roomSelected,
-      members: [...roomSelected.members, ...value],
+      members: [...roomSelected.members, ...userAdd],
+      membersId: [...roomSelected.membersId, ...value],
     };
 
     updateDocument("rooms", selectedRoomId, roomAddUsers);
