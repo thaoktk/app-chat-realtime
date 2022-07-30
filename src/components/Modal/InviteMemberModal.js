@@ -126,7 +126,7 @@ function InviteMemberModal() {
             fetchOptions={fetchUserList}
             onChange={(newValue) => setValue(newValue)}
             style={{ width: "100%" }}
-            curmembers={roomSelected?.members} // uid của các member
+            curmembers={roomSelected?.membersId} // uid của các member
           />
         </Form>
       </Modal>
