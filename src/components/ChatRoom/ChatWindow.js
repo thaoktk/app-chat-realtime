@@ -3,7 +3,7 @@ import {
   SmileOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
 import { AuthContext } from "../../Context/AuthProvider";
 import {
@@ -36,7 +36,8 @@ function ChatWindow() {
   const handleOutRoom = () => {
     const roomDeleteCurrUser = {
       ...roomSelected,
-      members: roomSelected.membersId.filter((memberId) => memberId !== uid),
+      membersId: roomSelected.membersId.filter((memberId) => memberId !== uid),
+      members: roomSelected.members.filter((member) => member.uid !== uid),
     };
     updateDocument("rooms", selectedRoomId, roomDeleteCurrUser);
     setSelectedRoomId("");

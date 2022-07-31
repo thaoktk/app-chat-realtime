@@ -1,14 +1,12 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Avatar, Collapse, Typography } from "antd";
-import { closestTo, format } from "date-fns";
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../Context/AppProvider";
 
 const { Panel } = Collapse;
 
 function RoomList() {
   const {
-    messages,
     rooms,
     selectedRoomId,
     setIsAddRoomVisible,
