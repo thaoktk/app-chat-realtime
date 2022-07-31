@@ -80,12 +80,12 @@ function AddRoomModal() {
       >
         <Form form={form} layout="vertical">
           <Form.Item label="Tên phòng" name="name">
-            <Input placeholder="Nhập tên phòng" maxLength={15} />
+            <Input placeholder="Nhập tên phòng" maxLength={30} />
           </Form.Item>
           <Form.Item label="Mô tả" name="description">
             <Input.TextArea
               placeholder="Nhập mô tả"
-              maxLength={20}
+              maxLength={40}
               autoSize={{ minRows: 2, maxRows: 6 }}
             />
           </Form.Item>

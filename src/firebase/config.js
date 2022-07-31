@@ -5,13 +5,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCXL43j9VzysJSd-9-PO2B7YihEsTBVSHQ",
-  authDomain: "app-chat-realtime-5b389.firebaseapp.com",
-  projectId: "app-chat-realtime-5b389",
-  storageBucket: "app-chat-realtime-5b389.appspot.com",
-  messagingSenderId: "873383541360",
-  appId: "1:873383541360:web:2f8274fbff1482a6d592b5",
-  measurementId: "G-GG1YPPVRN9",
+  apiKey: "AIzaSyARGInIWTxXRGlpWGT6_Sk6UWhhC0tcr10",
+  authDomain: "app-chat-realtime-dbf44.firebaseapp.com",
+  projectId: "app-chat-realtime-dbf44",
+  storageBucket: "app-chat-realtime-dbf44.appspot.com",
+  messagingSenderId: "260019860053",
+  appId: "1:260019860053:web:000a83024460f9b5961adc",
 };
 
 // Initialize Firebase
@@ -24,4 +23,3 @@ const db = getFirestore();
 const storage = getStorage(app);
 
 export { db, auth, storage };
-

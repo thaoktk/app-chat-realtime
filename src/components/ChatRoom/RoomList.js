@@ -32,7 +32,7 @@ function RoomList() {
               <Typography.Link
                 key={room.id}
                 onClick={() => setSelectedRoomId(room.id)}
-                className={`block mb-2 font-medium ${
+                className={`block mb-2 font-medium text-ellipsis overflow-hidden whitespace-nowrap ${
                   room.id === selectedRoomId ? "active" : ""
                 }`}
               >

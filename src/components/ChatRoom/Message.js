@@ -58,8 +58,7 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
           </div>
           <div>
             <p
-              style={{ backgroundColor: roomSelected?.colorRoom }}
-              className={`text-prm-white text-xl px-3 py-2 ml-5 mt-2 w-fit  rounded break-words text`}
+              className={`text-prm-white text-xl px-3 py-2 ml-5 mt-2 w-fit bg-[#272829] rounded break-words text`}
             >
               {text}
             </p>

@@ -89,16 +89,16 @@ function ChatWindow() {
         </div>
       ) : (
         <div className="w-full h-full">
-          <div className="p-5 h-[90px] flex md:justify-between justify-around items-center ">
+          <div className="p-5 h-[90px] flex justify-between items-center ">
             <div className="w-fit">
-              <p className="text-prm-white text-xl font-semibold break-words">
+              <p className="md:w-full w-[140px] text-prm-white text-xl font-semibold text-ellipsis overflow-hidden whitespace-nowrap">
                 {roomSelected?.name}
               </p>
-              <span className="text-prm-white mt-2 break-words block">
+              <span className="md:w-full w-[140px] text-prm-white mt-2 break-words block text-ellipsis overflow-hidden whitespace-nowrap">
                 {roomSelected?.description}
               </span>
             </div>
-            <div className="flex items-center justify-center md:gap-5 gap-3">
+            <div className="flex items-center justify-between md:gap-5 gap-4">
               <button
                 onClick={handleInviteMember}
                 className="md:mr-2 text-prm-white text-lg hover:text-prm-orange flex items-center justify-center gap-2 transition-hover"

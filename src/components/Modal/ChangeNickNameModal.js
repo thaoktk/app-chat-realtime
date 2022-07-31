@@ -39,26 +39,31 @@ function ChangeNickNameModal() {
     });
   };
 
-  const handleChangeNickName = (e) => {
+  const handleKeyUp = (e) => {
     if (e.key === "Enter") {
-      if (nickName.length <= 0 || nickName.length >= 30) {
-        openNotification();
-        return;
-      } else {
-        const room = {
-          ...roomSelected,
-          members: roomSelected?.members.map((member) => {
-            if (member.uid === uidOfMember) {
-              return {
-                ...member,
-                nickName,
-              };
-            } else return member;
-          }),
-        };
-        updateDocument("rooms", selectedRoomId, room);
-        setIsChangeNickName(false);
-      }
+      handleChangeNickName();
+    }
+  };
+
+  const handleChangeNickName = () => {
+    if (nickName.length <= 0 || nickName.length >= 30) {
+      openNotification();
+      return;
+    } else {
+      const room = {
+        ...roomSelected,
+        members: roomSelected?.members.map((member) => {
+          if (member.uid === uidOfMember) {
+            return {
+              ...member,
+              nickName,
+            };
+          } else return member;
+        }),
+      };
+      updateDocument("rooms", selectedRoomId, room);
+      setIsChangeNickName(false);
+      setNickName("");
     }
   };
 
@@ -88,9 +93,16 @@ function ChangeNickNameModal() {
                         placeholder="Đặt biệt danh"
                         className="outline-none border rounded-md w-full px-2 py-1 mr-3 mt-1"
                         onChange={handleSetNickName}
-                        onKeyUp={handleChangeNickName}
+                        onKeyUp={handleKeyUp}
                       />
-                      <div onClick={() => setIsChangeNickName(false)}>❌</div>
+                      {isChangeNickName && (
+                        <div className="flex justify-between items-center gap-2">
+                          <div onClick={handleChangeNickName}>✔️</div>
+                          <div onClick={() => setIsChangeNickName(false)}>
+                            ❌
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <p

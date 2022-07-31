@@ -50,7 +50,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
           </Select.Option>
         );
       })}
-    </Select>
+    </Select> 
   );
 }
 
