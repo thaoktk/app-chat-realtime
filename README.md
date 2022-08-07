@@ -6,7 +6,7 @@
   - Change the color of block text
   - Change nick name of each other
   
-## Some features will do:
+## Some features will be done:
   - Send gif, image, voice chat
   - Private chat (2 people)
   - Change photo and name, desciption of room
