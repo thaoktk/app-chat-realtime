@@ -9,7 +9,7 @@
 ## Some features will be done:
   - Send gif, image, voice chat
   - Private chat (2 people)
-  - Change photo and name, desciption of room
+  - Change photo and name, description of room
   - ...
 
 ![image](https://user-images.githubusercontent.com/74906342/183322011-4ddb9d3b-031d-4ec7-9234-a0091350db4a.png)
