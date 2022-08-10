@@ -61,7 +61,9 @@ function ChangeNickNameModal() {
           } else return member;
         }),
       };
+
       updateDocument("rooms", selectedRoomId, room);
+      
       setIsChangeNickName(false);
       setNickName("");
     }

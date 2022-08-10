@@ -33,8 +33,7 @@ function InfoRoomModal() {
   }, [roomSelected]);
 
   const handleChangeColor = (color) => {
-    const roomChangeColor = { ...roomSelected, colorRoom: color };
-    updateDocument("rooms", selectedRoomId, roomChangeColor);
+    updateDocument("rooms", selectedRoomId, { colorRoom: color });
   };
 
   const handleOpenChangeNickNameModal = () => {

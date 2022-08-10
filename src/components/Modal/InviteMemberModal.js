@@ -83,6 +83,7 @@ function InviteMemberModal() {
     isInviteMemberVisible,
     setIsInviteMemberVisible,
   } = useContext(AppContext);
+  
   const [form] = Form.useForm();
 
   const handleOk = () => {

@@ -3,6 +3,7 @@ import {
   SmileOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
+import { arrayRemove } from "firebase/firestore";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -36,12 +37,11 @@ function ChatWindow() {
   const handleOutRoom = () => {
     const roomDeleteCurrUser = {
       ...roomSelected,
-      membersId: roomSelected.membersId.filter((memberId) => memberId !== uid),
+      membersId: arrayRemove(uid),
       members: roomSelected.members.filter((member) => member.uid !== uid),
     };
     updateDocument("rooms", selectedRoomId, roomDeleteCurrUser);
     setSelectedRoomId("");
-    console.log(roomDeleteCurrUser.members);
     if (roomDeleteCurrUser.members <= 0) {
       deleteDocument("rooms", selectedRoomId);
     }
