@@ -50,8 +50,7 @@ function ChangeNickNameModal() {
       openNotification();
       return;
     } else {
-      const room = {
-        ...roomSelected,
+      updateDocument("rooms", selectedRoomId, {
         members: roomSelected?.members.map((member) => {
           if (member.uid === uidOfMember) {
             return {
@@ -60,10 +59,8 @@ function ChangeNickNameModal() {
             };
           } else return member;
         }),
-      };
+      });
 
-      updateDocument("rooms", selectedRoomId, room);
-      
       setIsChangeNickName(false);
       setNickName("");
     }
@@ -92,6 +89,7 @@ function ChangeNickNameModal() {
                     <div className="w-full flex items-center">
                       <input
                         type="text"
+                        value={nickName}
                         placeholder="Đặt biệt danh"
                         className="outline-none border rounded-md w-full px-2 py-1 mr-3 mt-1"
                         onChange={handleSetNickName}

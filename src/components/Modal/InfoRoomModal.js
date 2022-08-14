@@ -1,13 +1,18 @@
 import { MoreOutlined } from "@ant-design/icons";
-import { Avatar, Modal, Tooltip } from "antd";
+import { Avatar, Modal, notification, Tooltip } from "antd";
 import { format } from "date-fns";
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { AppContext } from "../../Context/AppProvider";
 import { updateDocument } from "../../firebase/service";
 
 const colorsRoom = ["#272829", "#003865", "#7F5283", "#898AA6", "#A10035"];
 
 function InfoRoomModal() {
+  const [isChangeRoomName, setIsChangeRoomName] = useState(false);
+  const [isChangeRoomDesc, setIsChangeRoomDesc] = useState(false);
+  const [roomName, setRoomName] = useState("");
+  const [roomDesc, setRoomDesc] = useState("");
+
   const {
     roomSelected,
     members,
@@ -41,6 +46,48 @@ function InfoRoomModal() {
     setIsInfoRoomVisible(false);
   };
 
+  const openNotificationRoomName = () => {
+    notification["warning"]({
+      message: "Lưu ý",
+      description: "Tên phòng không được để trống và quá 30 ký tự!",
+    });
+  };
+
+  const openNotificationRoomDesc = () => {
+    notification["warning"]({
+      message: "Lưu ý",
+      description: "Mô tả phòng không được để trống và quá 40 ký tự!",
+    });
+  };
+
+  const handleChangeRoomName = () => {
+    if (roomName.length <= 0 || roomName.length >= 30) {
+      openNotificationRoomName();
+      return;
+    } else {
+      updateDocument("rooms", selectedRoomId, {
+        name: roomName,
+      });
+
+      setRoomName("");
+      setIsChangeRoomName(false);
+    }
+  };
+
+  const handleChangeRoomDesc = () => {
+    if (roomDesc.length <= 0 || roomDesc.length >= 30) {
+      openNotificationRoomDesc();
+      return;
+    } else {
+      updateDocument("rooms", selectedRoomId, {
+        description: roomDesc,
+      });
+
+      setRoomDesc("");
+      setIsChangeRoomDesc(false);
+    }
+  };
+
   return (
     <div>
       <Modal
@@ -60,10 +107,70 @@ function InfoRoomModal() {
             </Avatar>
           </div>
           <div className="text-center text-prm-black text-xl font-semibold">
-            {roomSelected?.name}
+            {isChangeRoomName ? (
+              <input
+                type="text"
+                value={roomName}
+                placeholder={roomSelected?.name}
+                className="outline-none border rounded-md px-3 py-1 mt-1"
+                onChange={(e) => setRoomName(e.target.value)}
+              />
+            ) : (
+              <span>{roomSelected?.name}</span>
+            )}
+            {isChangeRoomName ? (
+              <div className="inline-block ml-2">
+                <span className="px-1" onClick={handleChangeRoomName}>
+                  ✔️
+                </span>
+                <span
+                  className="px-1"
+                  onClick={() => setIsChangeRoomName(false)}
+                >
+                  ❌
+                </span>
+              </div>
+            ) : (
+              <span
+                className="px-2 ml-2"
+                onClick={() => setIsChangeRoomName(true)}
+              >
+                🖋️
+              </span>
+            )}
           </div>
-          <div className="mt-2 text-center text-prm-black text-lg">
-            {roomSelected?.description}
+          <div className="mt-3 text-center text-prm-black text-lg">
+            {isChangeRoomDesc ? (
+              <input
+                type="text"
+                value={roomDesc}
+                placeholder={roomSelected?.description}
+                className="outline-none border rounded-md px-3 py-1 mt-1"
+                onChange={(e) => setRoomDesc(e.target.value)}
+              />
+            ) : (
+              <span>{roomSelected?.description}</span>
+            )}
+            {isChangeRoomDesc ? (
+              <div className="inline-block ml-2">
+                <span className="px-1" onClick={handleChangeRoomDesc}>
+                  ✔️
+                </span>
+                <span
+                  className="px-1"
+                  onClick={() => setIsChangeRoomDesc(false)}
+                >
+                  ❌
+                </span>
+              </div>
+            ) : (
+              <span
+                className="px-2 ml-2"
+                onClick={() => setIsChangeRoomDesc(true)}
+              >
+                🖋️
+              </span>
+            )}
           </div>
           <div className="mt-5 flex justify-center items-center">
             <Avatar.Group
@@ -89,6 +196,7 @@ function InfoRoomModal() {
             </Avatar.Group>
             <MoreOutlined
               className="text-xl px-2 cursor-pointer"
+              title="Change nick name of each member"
               onClick={handleOpenChangeNickNameModal}
             />
           </div>

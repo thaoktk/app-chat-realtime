@@ -36,12 +36,13 @@ function ChatWindow() {
 
   const handleOutRoom = () => {
     const roomDeleteCurrUser = {
-      ...roomSelected,
       membersId: arrayRemove(uid),
       members: roomSelected.members.filter((member) => member.uid !== uid),
     };
+
     updateDocument("rooms", selectedRoomId, roomDeleteCurrUser);
     setSelectedRoomId("");
+
     if (roomDeleteCurrUser.members <= 0) {
       deleteDocument("rooms", selectedRoomId);
     }
@@ -143,7 +144,6 @@ function ChatWindow() {
                 <div ref={messagesEndRef} />
               </div>
             )}
-
             <form className="mt-3 w-full flex" onSubmit={handleOnSubmit}>
               <input
                 value={valueInput}

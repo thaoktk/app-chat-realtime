@@ -36,7 +36,7 @@ function Message({ idUser, text, displayName, createdAt, photoURL }) {
           </span>
           <p
             style={{ backgroundColor: roomSelected?.colorRoom }}
-            className={`text-prm-white text-xl px-3 py-2 mr-3 mt-2 w-fit  rounded break-words text`}
+            className={`text-prm-white text-xl px-3 py-2 mr-3 mt-2 w-fit rounded break-words text`}
           >
             {text}
           </p>

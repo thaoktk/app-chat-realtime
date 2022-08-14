@@ -50,7 +50,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
           </Select.Option>
         );
       })}
-    </Select> 
+    </Select>
   );
 }
 
@@ -83,7 +83,7 @@ function InviteMemberModal() {
     isInviteMemberVisible,
     setIsInviteMemberVisible,
   } = useContext(AppContext);
-  
+
   const [form] = Form.useForm();
 
   const handleOk = () => {
@@ -93,8 +93,8 @@ function InviteMemberModal() {
         nickName: null,
       };
     });
+
     const roomAddUsers = {
-      ...roomSelected,
       members: [...roomSelected.members, ...userAdd],
       membersId: [...roomSelected.membersId, ...value],
     };

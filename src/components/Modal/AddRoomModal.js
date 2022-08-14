@@ -30,8 +30,10 @@ function AddRoomModal() {
       roomPhotoURL: imageRoomPhoto,
       colorRoom: "#272829",
     });
+
     form.resetFields();
     inputFileRef.current.value = null;
+
     setImgUrl("");
     setProgressPercent(0);
     setIsAddRoomVisible(false);
@@ -40,6 +42,7 @@ function AddRoomModal() {
   const handleCancel = () => {
     form.resetFields();
     inputFileRef.current.value = null;
+
     setImgUrl("");
     setProgressPercent(0);
     setIsAddRoomVisible(false);
@@ -48,6 +51,7 @@ function AddRoomModal() {
   const handleClick = () => {
     if (imgUrl) return;
     if (!imgUpload) return;
+    
     const storageRef = ref(storage, `images/${imgUpload.name}`);
     const uploadTask = uploadBytesResumable(storageRef, imgUpload);
 
